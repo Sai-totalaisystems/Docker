@@ -1,8 +1,8 @@
-ARG APACHE_VERSION=""
 FROM ubuntu:20.04
-FROM httpd:${APACHE_VERSION:+${APACHE_VERSION}-}alpine
-RUN apk update; \
-    apk upgrade;
+
+RUN sudo apt update
+RUN apt install apache2
+RUN systemctl start apache2
 
 # Copy apache vhost file to proxy php requests to php-fpm container
 COPY demo.apache.conf /usr/local/apache2/conf/demo.apache.conf
