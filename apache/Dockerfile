@@ -1,4 +1,6 @@
-FROM ubuntu:20.04
+FROM scratch
+ADD ubuntu-focal-oci-amd64-root.tar.gz /
+CMD ["bash"]
 
 RUN sudo apt update
 RUN apt install apache2
