@@ -7,5 +7,5 @@ RUN apt-get install –y apache2-utils
 RUN apt-get clean 
 
 ENV APACHE_RUN_DIR /var/run/apache2
-CMD [“apache2”, “-D”, “FOREGROUND”]
+CMD ["/usr/sbin/apache2","-D","FOREGROUND"]
 EXPOSE 80 
