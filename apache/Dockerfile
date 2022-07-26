@@ -1,10 +1,12 @@
 FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update
-RUN apt-get install -y apache2
-RUN apt-get clean 
+RUN apt-get update && \
+apt-get install -y apache2 && \
+apt-get clean
 
-ENV APACHE_RUN_DIR /var/run/apache2
-CMD ["/usr/sbin/apache2","-D","FOREGROUND"]
-EXPOSE 80 
+# Set the log directory PATH
+ENV APACHE_LOG_DIR /var/log/apache2
+
+# Launch apache2 server in the foreground
+ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
